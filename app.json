@@ -1,0 +1,8 @@
+{
+  "name": "Music Web App",
+  "description": "A simple Angular based Music webapp",
+  "repository": "https://github.com/riteshkukreja/music-webapp-heroku",
+  "logo": "",
+  "keywords": ["node", "express", "static", "webapp", "music"],
+  "image": "heroku/nodejs"
+}

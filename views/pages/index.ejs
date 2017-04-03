@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Music Web App</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-resource.min.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+</head>
+<body ng-app="musicapp" ng-controller="mainController">
+
+  <!-- Primary Navigation Bar -->
+  <header>
+    <div class="nav" ng-click="currentTab=tabs[0]" ng-class="currentTab == tabs[0] ? 'selected': ''">Songs</div>
+    <div class="nav" ng-click="currentTab=tabs[1]" ng-class="currentTab == tabs[1] ? 'selected': ''">Genres</div>
+  </header>
+
+  <!-- Songs List View -->
+  <div class="module" ng-if="currentTab == tabs[0]" ng-controller="viewSongController">
+    <header>Music Tracks</header>
+
+    <!-- search bar -->
+    <div class="row">
+      <searchbar name="search"></searchbar> 
+    </div>
+
+    <!-- searched items -->
+    <div class="songlist" ng-if="search != ''">
+      <song ng-repeat="song in searched" name="song" ng-click="update(song)"></song>
+    </div>
+
+    <!-- songs -->
+    <div class="songlist" ng-if="search == ''">
+      <song ng-repeat="song in songs | filter: { title: search }" name="song" ng-click="update(song)"></song>
+    </div>
+
+    <!-- add song button -->
+    <div class="row">
+      <button ng-click="goto(2)">Add New Track</button>
+    </div>  
+
+    <!-- Page tabs -->
+    <div class="row paginate">
+      <span class="prev" ng-click="movePageBack()"></span>
+      <span class="next" ng-click="movePageFront()"></span>
+    </div>
+  </div>
+
+  <!-- Genres List View -->
+  <div class="module" ng-if="currentTab == tabs[1]" ng-controller="viewGenreController">
+    <header>Genres</header>
+
+    <!-- search bar -->
+    <div class="row">
+      <searchbar name="search"></searchbar>
+    </div>
+
+    <!-- genres -->
+    <div class="songlist">
+      <genre ng-repeat="record in genres | filter: { name: search }" ng-click="updateGenre(record)" name="record"></genre>
+    </div>
+
+    <!-- add song button -->
+    <div class="row">
+      <button ng-click="goto(4)">Add New Genre</button>
+    </div>  
+
+    <!-- Page tabs -->
+    <div class="row paginate">
+      <span class="prev" ng-click="movePageBack()"></span>
+      <span class="next" ng-click="movePageFront()"></span>
+    </div>
+  </div>
+
+  <!-- Add Song Module -->
+  <div class="module" ng-if="currentTab == tabs[2]" ng-controller="addSongController">
+    <header>Add New Track</header>
+
+    <!-- Track Title -->
+    <div class="row">
+      <label for="title"> Title: </label>
+      <input type="text" name="title" ng-model="track.title" placeholder="Song Title" important>
+    </div>
+
+    <!-- Track Rating -->
+    <div class="row">
+      <label for="rating"> Rating: </label>
+      <input type="number" name="rating" ng-model="track.rating" placeholder="Song Rating">
+    </div>
+
+    <!-- Track Genres -->
+    <div class="row">
+      <label for="genres"> Genre: </label>
+
+      <select name="genres" ng-options="gen.name for gen in genres" ng-model="track.genre"></select>
+
+      <div class="genres">
+        <span class="item" ng-repeat="gen in track.genres">{{gen.name}} 
+          <span class="remove" ng-click="track.genres.splice($index, 1)"> X </span>
+        </span>
+
+      </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+      <button ng-click="add()">Add</button>
+    </div>
+  </div>
+
+  <!-- Update Song Module -->
+  <div class="module" ng-if="currentTab == tabs[3]" ng-controller="updateSongController">
+    <header>Update Track</header>
+
+    <!-- Track Title -->
+    <div class="row">
+      <label for="title"> Title: </label>
+      <input type="text" name="title" ng-model="track.title" placeholder="Song Title" important>
+    </div>
+
+    <!-- Track Rating -->
+    <div class="row">
+      <label for="rating"> Rating: </label>
+      <input type="number" name="rating" ng-model="track.rating" placeholder="Song Rating">
+    </div>
+
+    <!-- Track Genres -->
+    <div class="row">
+      <label for="genres"> Genre: </label>
+
+      <select name="genres" ng-options="gen.name for gen in genres" ng-model="track.genre"></select>
+
+      <div class="genres">
+        <span class="item" ng-repeat="gen in track.genres">{{gen.name}} 
+          <span class="remove" ng-click="track.genres.splice($index, 1)"></span>
+        </span>
+
+      </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+      <button ng-click="update()">Update</button>
+    </div>
+  </div>
+
+  <!-- Add Genre Module -->
+  <div class="module" ng-if="currentTab == tabs[4]" ng-controller="addGenreController">
+    <header>Add New Genre</header>
+
+    <!-- Genre Title -->
+    <div class="row">
+      <label for="title"> Title: </label>
+      <input type="text" name="title" ng-model="genre.name" placeholder="Genre Title" important>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+      <button ng-click="add()">Add</button>
+    </div>
+  </div>
+
+  <!-- Update Genre Module -->
+  <div class="module" ng-if="currentTab == tabs[5]" ng-controller="updateGenreController">
+    <header>Update Genre</header>
+
+    <!-- genre Title -->
+    <div class="row">
+      <label for="title"> Title: </label>
+      <input type="text" name="title" ng-model="genre.name" placeholder="genre Title" important>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+      <button ng-click="update()">Update</button>
+    </div>
+  </div>
+    
+
+</body>
+</html>

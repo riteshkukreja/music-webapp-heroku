@@ -1,0 +1,230 @@
+body { 
+	margin: 0; 
+	overflow: hidden; 
+	text-align: center; 
+	width: 100vw; 
+	height: 100vh; 
+	min-width: 640px; 
+}
+
+/** Headers **/
+body header { 
+	width: 100vw;
+	height: 50px;
+	background: #e74c3c;
+	color: #ecf0f1;
+}
+
+header div.nav {
+	display: inline-block;
+	padding: 10px 20px;
+	margin-right: 10px;
+	float: right;
+	color: #CCC;
+}
+
+header div.nav:hover, header div.nav.selected {
+	color: #fff;
+	cursor: pointer;
+}
+
+/** Modules **/
+
+div.module {
+	width: 80vw;
+	height: auto;
+	box-sizing: border-box;
+	margin: 0;
+	position: absolute;
+	left: calc(50% - 40vw);
+}
+
+div.module header {
+	width: 100%;
+	background: transparent;
+	text-align: center;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	color: #000;
+	font-size: 24px;
+	height: 30px;
+}
+
+div.module div.row {
+	width: 100%;
+	margin: 10px;
+	box-sizing: border-box;
+	padding: 10px 20px;
+	text-align: center;
+	border-collapse: collapse;
+	position: relative;
+}
+
+/** Songs List **/
+div.module .songlist {
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 60vh;
+	text-align: center;
+}
+
+div.songlist div.row {
+	text-align: left;
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+	cursor: pointer;
+	justify-content: center;
+}
+
+div.songlist div.row .desc {
+	width: 60%;
+	display: inline-block;
+}
+
+div.songlist div.row .rating {
+	float: right;
+}
+
+/** Search Bar **/
+div.row .searchbar {
+	border: 1px solid black;
+	border-radius: 10px;
+	color: black;
+	background: transparent;
+	outline: none;
+	width: 80%;
+	padding: 10px 20px;
+	padding-left: 40px;
+	box-sizing: border-box;
+}
+
+div.row span.clear {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: calc(10% + 25px);
+	top: calc(50% - 10px);
+	background: url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_cancel_black_24px.svg) no-repeat center;
+}
+
+div.row span.searchicon {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: calc(10% + 25px);
+	top: calc(50% - 10px);
+	background: url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_search_black_24px.svg) no-repeat center;
+}
+
+/** Buttons and Inputs **/
+div.row button, div.row input {
+	border: 1px solid black;
+	border-radius: 10px;
+	color: black;
+	background: transparent;
+	outline: none;
+	width: 80%;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+div.row button:hover {
+	background: #e74c3c;
+	color: #ecf0f1;
+	border: 0;
+	transition: all 200ms ease;
+}
+
+div.row select {
+	float: right;
+	padding: 10px 20px;
+	border-radius: 10px;
+	position: absolute;
+	right: 5%;
+	top: 0;
+}
+
+div.row div.genres {
+	padding: 10px 20px;
+	box-sizing: border-box;
+	width: 100%;
+	margin-left: 5%;
+	text-align: left;
+}
+
+div.row div.genres span.item {
+	padding: 5px;
+	background: #3498db;
+	color: #FFF;
+	border-radius: 10px;
+	margin: 5px;
+	display: inline-block;
+}
+
+span.remove {
+	background: url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_cancel_white_24px.svg) no-repeat center;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+
+div.row label {
+	display: block;
+	text-align: left;
+	margin-left: 5%;
+	padding: 10px;
+}
+
+div.row input[type=text], div.row input[type=number] {
+	cursor: auto;
+}
+
+/** Pagination **/
+.paginate span {
+	display: inline-block;
+	text-align: center;
+	background: #ecf0f1;
+	color: #444;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 200ms ease;
+}
+
+.paginate span:hover {
+	background: #e74c3c;
+	color: #ecf0f1;
+}
+
+.paginate span.next::after {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_keyboard_arrow_right_black_24px.svg) no-repeat center;
+}
+
+.paginate span.prev::after {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_navigate_before_black_24px.svg) no-repeat center;
+}
+
+/** Scrollbar **/
+*::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba( 0, 0, 0, 0.3);
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar {
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #000000;
+}
